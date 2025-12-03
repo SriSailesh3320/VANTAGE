@@ -136,8 +136,10 @@ const Dashboard: React.FC = () => {
         // Append .NS for Indian stocks if missing
         const querySym = sym.endsWith('.NS') ? sym : `${sym}.NS`;
 
+        const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+
         try {
-            const response = await fetch(`http://127.0.0.1:8000/history?symbol=${querySym}&period=${apiPeriod}`);
+            const response = await fetch(`${API_BASE_URL}/history?symbol=${querySym}&period=${apiPeriod}`);
             if (response.ok) {
                 const data = await response.json();
                 if (data.data && data.data.length > 0) {
@@ -163,8 +165,10 @@ const Dashboard: React.FC = () => {
         setInput('');
         setIsProcessing(true);
 
+        const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000';
+
         try {
-            const response = await fetch('http://127.0.0.1:8000/chat', {
+            const response = await fetch(`${API_BASE_URL}/chat`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: userMessage })
