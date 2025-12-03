@@ -13,9 +13,9 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <div className="min-h-screen bg-background text-text font-sans selection:bg-white selection:text-black flex flex-col relative">
 
             {/* Navbar - VANTAGE Style */}
-            <header className="h-16 border-b border-border bg-background/80 backdrop-blur-md flex items-center px-8 sticky top-0 z-50">
+            <header className="h-16 border-b border-border bg-background/80 backdrop-blur-md flex items-center px-4 md:px-8 sticky top-0 z-50">
                 <div className="flex items-center gap-4">
-                    <div className="w-5 h-5 bg-white flex items-center justify-center">
+                    <div className="w-5 h-5 bg-white hidden md:flex items-center justify-center">
                         {/* Simple geometric logo */}
                         <div className="w-2 h-2 bg-black"></div>
                     </div>

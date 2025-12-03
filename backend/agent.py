@@ -22,8 +22,8 @@ tools = [get_stock_price, get_stock_info, get_market_status, get_stock_history]
 # Note: User must provide OPENROUTER_API_KEY in .env
 llm = ChatOpenAI(
     base_url="https://openrouter.ai/api/v1",
-    api_key=os.getenv("OPENROUTER_API_KEY"),
-    model="tngtech/deepseek-r1t2-chimera:free", 
+    openai_api_key=os.getenv("OPENROUTER_API_KEY"),
+    model="google/gemini-2.0-flash-exp:free", 
 )
 
 llm_with_tools = llm.bind_tools(tools)
@@ -39,15 +39,19 @@ Your goal is to provide real-time analysis and control the user's trading dashbo
 
 **Protocol**:
 - When asked to analyze a stock, ALWAYS call `get_stock_history` to update the user's chart.
-- **Structured Output**: To update the UI, you must include a JSON block in your final response.
+- **CRITICAL: Structured Output**:
+  To render the chart, your FINAL response MUST contain a JSON block.
+  Do not just describe the data. You MUST output the JSON.
+  
   Format:
   ```json
   {
     "action": "update_chart",
     "symbol": "TCS.NS",
-    "data": [ ... data from tool ... ]
+    "data": [] 
   }
   ```
+  (Note: Leave "data" empty. The frontend will fetch the actual data.)
 - **Confirmation**: Before executing a "Buy" or "Sell" order, you MUST ask the user for confirmation.
   Example: "I have analyzed TCS. Price is 3400. Shall I execute a BUY order for 10 QTY?"
 

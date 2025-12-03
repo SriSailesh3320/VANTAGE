@@ -1,170 +1,93 @@
-# VANTAGE – Smart Market Intelligence Agent
-### Virtual Autonomous Network for Trading and Analysis Generation Engine
+# VANTAGE - Smart Stock Agent
 
+VANTAGE is a powerful, AI-driven market intelligence dashboard that provides real-time stock analysis, interactive charts, and a smart agent capable of answering complex financial queries.
 
+![Dashboard Preview](docs/demo_dashboard.webp)
 
-**VANTAGE** is an advanced, agentic financial intelligence system designed to move beyond conventional market dashboards. Instead of simply displaying market data, **VANTAGE** interprets that data, predicts possible outcomes, evaluates risks, and simulates execution strategies in real time. It combines real-time analytics, multi-agent reasoning, and a premium trading interface to create a next-generation market intelligence experience.
+## Features
 
----
+-   **Smart AI Agent**: Powered by advanced LLMs (Gemini 2.0 Flash via OpenRouter), the agent can analyze stock trends, fetch historical data, and answer natural language queries.
+-   **Real-time Interactive Charts**:
+    -   **Dynamic Coloring**: Charts automatically turn **Green** (Up Trend) or **Red** (Down Trend) based on performance.
+    -   **Multiple Time Ranges**: 1D, 1W, 1M, 3M, 6M, 1Y.
+    -   **Chart Types**: Switch between Area and Candlestick views.
+-   **Comprehensive Watchlist**:
+    -   Track 100+ top Indian stocks (NIFTY 50, SENSEX, etc.).
+    -   **Stable Data**: Deterministic mock data ensures consistent values without flickering.
+    -   **Smart Layout**: Clear display of Symbol, Price, Change, and Percentage.
+-   **Market Depth**: Dynamic Bid/Ask panel that updates based on the selected stock.
+-   **Top Bar Indices**: Always-visible tickers for NIFTY 50 and SENSEX.
 
-## System Overview
+## Dynamic Charting
 
-**VANTAGE** is built on a decoupled client-server architecture optimized for high throughput, low latency, and scalable AI computation. Its frontend provides a cinematic and distraction-free command center for traders and analysts, while the backend orchestrates a swarm of autonomous AI agents to analyze markets with sub-millisecond precision.
+The application features a sophisticated charting engine that visually indicates market sentiment.
 
----
+![Chart Coloring Demo](docs/demo_chart_colors.webp)
 
-## System Architecture
+## Tech Stack
 
-### A. Frontend 
+-   **Frontend**: React, TypeScript, Tailwind CSS, Recharts, Lucide React.
+-   **Backend**: FastAPI, Python, LangChain, LangGraph.
+-   **AI/LLM**: OpenRouter API (Google Gemini 2.0 Flash).
+-   **Data**: yfinance (Yahoo Finance API).
 
-The frontend focuses on clarity, speed, and immersive visual experience. It is designed as a modern trading cockpit for decision-making.
+## Setup & Installation
 
-**Technologies and characteristics:**
-*   **React 18 with Vite** for extremely fast hot module replacement and builds.
-*   **TypeScript** for strict type safety and robust development.
-*   **Tailwind CSS** for a custom utility-driven design system.
-*   **Inter font family** for a geometric, high-frequency trading aesthetic.
-*   **Lucide React icons and custom HTML5 Canvas renders** for interactive visual effects such as moving particles and dot grid patterns.
-*   **Emphasis on minimal-noise UI**, sharp typography, and cinematic black-and-white theme.
+### Prerequisites
+-   Node.js (v16+)
+-   Python (v3.10+)
+-   OpenRouter API Key
 
-### B. Backend (Neural Core)
+### Backend Setup
 
-The backend functions as the orchestrator of VANTAGE’s AI agent network. It manages data ingestion, event routing, inference pipelines, and collective decision-making.
+1.  Navigate to the backend directory:
+    ```bash
+    cd backend
+    ```
+2.  Create a virtual environment and activate it:
+    ```bash
+    python -m venv venv
+    # Windows
+    venv\Scripts\activate
+    # Mac/Linux
+    source venv/bin/activate
+    ```
+3.  Install dependencies:
+    ```bash
+    pip install -r requirements.txt
+    ```
+4.  Create a `.env` file in the `backend` directory and add your API key:
+    ```env
+    OPENROUTER_API_KEY=your_api_key_here
+    ```
+5.  Start the backend server:
+    ```bash
+    uvicorn main:app --reload
+    ```
+    The backend will run on `http://localhost:8000`.
 
-**Technologies and characteristics:**
-*   **FastAPI** for a high-performance asynchronous Python API layer.
-*   **WebSockets** for live price delivery and bidirectional event communication.
-*   **PyTorch and transformer-based models** for market sentiment and pattern recognition.
-*   **Vector Database (Milvus or Pinecone)** for long-term semantic memory of news, events, and historical sentiment.
-*   **Pipeline-based computation** to support real-time inference without blocking.
+### Frontend Setup
 
----
+1.  Navigate to the frontend directory:
+    ```bash
+    cd frontend
+    ```
+2.  Install dependencies:
+    ```bash
+    npm install
+    ```
+3.  Start the development server:
+    ```bash
+    npm run dev
+    ```
+    The application will run on `http://localhost:5173`.
 
-## Core Features
+## Usage
 
-### A. Multi-Agent AI System
+1.  **Select a Stock**: Click on any stock in the watchlist to load its chart and market depth.
+2.  **Ask the Agent**: Type queries like "Analyze TCS" or "Show me the 1 year trend for Reliance" in the chat bar.
+3.  **Analyze Trends**: Use the time range selectors to view different historical periods.
 
-VANTAGE consists of multiple independent yet collaborative agents, each responsible for a specialized intelligence domain.
+## License
 
-*   **Analyst Agent:**
-    *   Monitors price actions and technical indicators such as RSI, MACD, Bollinger Bands, moving averages, and support/resistance levels.
-    *   Integrates fundamental inputs and live sentiment to estimate directional bias.
-
-*   **Execution Agent:**
-    *   Simulates real-world trade routing using liquidity models.
-    *   Optimizes for minimal slippage and latency-aware execution.
-    *   Tests hypothetical scenarios before presenting recommended actions.
-
-*   **Risk Agent:**
-    *   Continuously evaluates volatility, leverage exposure, and portfolio concentration risk.
-    *   Overrides execution recommendations when tolerance thresholds are exceeded.
-
-### B. Real-Time Intelligence Layer
-
-*   Ingests market data feeds with millisecond responsiveness.
-*   Performs sentiment extraction from headlines, financial reports, and social feeds using transformer-based NLP.
-*   Contextualizes insights using vector memory to prevent short-term overreaction.
-
-### C. Precision UI and UX
-
-*   A trading interface that prioritizes clarity and focus over data noise.
-*   Dynamic particle and grid interaction effects powered by canvas rendering.
-*   Minimal yet information-dense dashboard cards and charts.
-*   Designed for professionals who require both functionality and visual precision.
-
----
-
-## Technology Stack Summary
-
-### Frontend
-*   **React 19**
-*   **TypeScript**
-*   **Tailwind CSS**
-*   **Vite**
-*   **Framer Motion** (Animations)
-*   **Recharts** (Data Visualization)
-*   **Lucide React** (Icons)
-
-### Backend
-*   **FastAPI**
-*   **Python**
-*   **LangGraph & LangChain** (Agent Orchestration)
-*   **OpenAI** (LLM Integration)
-*   **YFinance** (Market Data)
-
----
-
-## Installation and Setup
-
-**Prerequisites:**
-*   Node.js version 18 or higher
-*   Python version 3.10 or higher
-
-### Step 1. Clone the repository
-```bash
-git clone https://github.com/yourusername/vantage.git
-cd vantage
-```
-
-### Step 2. Frontend setup
-```bash
-cd frontend
-npm install
-npm run dev
-```
-Frontend development server will run at `http://localhost:5173`
-
-### Step 3. Backend setup
-```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # Windows users: venv\Scripts\activate
-pip install -r requirements.txt
-uvicorn main:app --reload
-```
-Backend API will run at `http://localhost:8000`
-
----
-
-## Project Structure
-
-```
-vantage/
-├── frontend/                 # React based command center
-│   ├── src/
-│   │   ├── components/       # UI modules such as DotGrid and layout elements
-│   │   ├── pages/            # Application pages such as Dashboard and Overview
-│   │   ├── App.tsx           # Main application component
-│   │   └── main.tsx          # React DOM rendering entry point
-│   ├── tailwind.config.js    # The centralized design system
-│   └── package.json
-│
-├── backend/                  # Python API and agent engine
-│   ├── agents/               # Neural agents for analysis, execution, and risk control
-│   ├── models/               # Pydantic schemas and database structures
-│   ├── main.py               # FastAPI entry point and router
-│   └── requirements.txt
-│
-└── README.md                 # Project documentation
-```
-
----
-
-## Target Use-Cases and Intended Users
-
-VANTAGE is engineered for:
-*   **Professional and retail traders** seeking structured automated market assistance.
-*   **Financial researchers** analyzing technical and sentiment-driven signals.
-*   **Developers** exploring agentic trading architectures and execution simulations.
-*   **Institutions** experimenting with AI-augmented market systems.
-
----
-
-## Long-Term Vision
-
-The long-term roadmap expands VANTAGE into a fully autonomous trading and portfolio management ecosystem. Planned advancements include:
-*   Reinforcement-learning-informed trade execution.
-*   Proactive hedging and automatic volatility protection.
-*   Automatic report generation on daily or weekly market conditions.
-*   Modular plugin system for integrating custom models and brokers.
----
+MIT
