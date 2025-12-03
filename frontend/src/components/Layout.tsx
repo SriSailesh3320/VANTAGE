@@ -16,7 +16,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             <header className="h-16 border-b border-border bg-background/80 backdrop-blur-md flex items-center px-4 md:px-8 sticky top-0 z-50">
                 <div className="flex items-center gap-4">
                     <div className="w-3.5 h-3.5 hidden md:flex items-center justify-center">
-                        <img src="/logo.webp" alt="VANTAGE Logo" className="w-full h-full object-contain" />
+                        <img src="/logo.png" alt="VANTAGE Logo" className="w-full h-full object-contain" />
                     </div>
                     <span className="font-sans font-medium tracking-[0.2em] text-xs text-white uppercase">
                         VANTAGE <span className="text-text-muted">//</span> SYSTEM
