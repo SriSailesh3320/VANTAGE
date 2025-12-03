@@ -88,6 +88,4 @@ The application features a sophisticated charting engine that visually indicates
 2.  **Ask the Agent**: Type queries like "Analyze TCS" or "Show me the 1 year trend for Reliance" in the chat bar.
 3.  **Analyze Trends**: Use the time range selectors to view different historical periods.
 
-## License
-
-MIT
+---
