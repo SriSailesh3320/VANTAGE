@@ -29,5 +29,3 @@ lerna-debug.log*
 *.sln
 *.sw?
 
-# Documentation
-docs
