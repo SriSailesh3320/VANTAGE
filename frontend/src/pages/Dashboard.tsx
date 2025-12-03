@@ -95,7 +95,7 @@ const Dashboard: React.FC = () => {
 
             if (range === '1D') return timeStr; // 10:20 AM
             if (range === '1W') return `${timeStr} ${dateStr}`; // 10:20 AM 20 NOV 25
-            if (['1M', '3M', '6M', '1Y'].includes(range)) return dateStr; // Date only for longer periods (daily data)
+            if (['1M', '3M', '6M'].includes(range)) return dateStr; // Date only for longer periods (daily data)
             return dateStr;
         } catch (e) {
             return isoString;
@@ -416,7 +416,7 @@ const Dashboard: React.FC = () => {
 
                                 {/* Time Range */}
                                 <div className="flex gap-1 bg-black/40 backdrop-blur-sm p-1 rounded border border-white/10">
-                                    {['1D', '1W', '1M', '3M', '6M', '1Y'].map((range) => (
+                                    {['1D', '1W', '1M', '3M', '6M'].map((range) => (
                                         <button
                                             key={range}
                                             onClick={() => fetchHistory(range)}

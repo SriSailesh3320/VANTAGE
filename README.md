@@ -2,7 +2,7 @@
 
 VANTAGE is a powerful, AI-driven market intelligence dashboard that provides real-time stock analysis, interactive charts, and a smart agent capable of answering complex financial queries.
 
-![Dashboard Preview](docs/demo_dashboard.webp)
+![Dashboard Preview](docs/demo_dashboard.png)
 
 ## Features
 
@@ -22,7 +22,7 @@ VANTAGE is a powerful, AI-driven market intelligence dashboard that provides rea
 
 The application features a sophisticated charting engine that visually indicates market sentiment.
 
-![Chart Coloring Demo](docs/demo_chart_colors.webp)
+![Chart Coloring Demo](docs/demo_chart_colors.png)
 
 ## Tech Stack
 
