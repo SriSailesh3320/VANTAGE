@@ -18,21 +18,15 @@ class AgentState(TypedDict):
 # Initialize Tools
 tools = [get_stock_price, get_stock_info, get_market_status, get_stock_history]
 
-# Model List for Fallback
-MODEL_LIST = [
-    "google/gemini-2.0-flash-exp:free",
-    "meta-llama/llama-3-8b-instruct:free",
-    "mistralai/mistral-7b-instruct:free",
-    "microsoft/phi-3-mini-128k-instruct:free",
-    "openchat/openchat-7b:free",
-]
+# Initialize LLM (OpenRouter)
+# Note: User must provide OPENROUTER_API_KEY in .env
+llm = ChatOpenAI(
+    base_url="https://openrouter.ai/api/v1",
+    openai_api_key=os.getenv("OPENROUTER_API_KEY"),
+    model="meta-llama/llama-3-8b-instruct:free", 
+)
 
-def get_llm(model_name: str):
-    return ChatOpenAI(
-        base_url="https://openrouter.ai/api/v1",
-        openai_api_key=os.getenv("OPENROUTER_API_KEY"),
-        model=model_name,
-    )
+llm_with_tools = llm.bind_tools(tools)
 
 # System Prompt
 SYSTEM_PROMPT = """You are VANTAGE, a high-frequency market intelligence agent.
@@ -73,24 +67,8 @@ def agent(state: AgentState):
     if not isinstance(messages[0], SystemMessage):
         messages.insert(0, SystemMessage(content=SYSTEM_PROMPT))
     
-    last_exception = None
-
-    for model_name in MODEL_LIST:
-        try:
-            print(f"Trying model: {model_name}")
-            llm = get_llm(model_name)
-            llm_with_tools = llm.bind_tools(tools)
-            response = llm_with_tools.invoke(messages)
-            return {"messages": [response]}
-        except Exception as e:
-            print(f"Model {model_name} failed: {e}")
-            last_exception = e
-            continue
-    
-    # If all fail, raise the last exception
-    if last_exception:
-        raise last_exception
-    return {"messages": []}
+    response = llm_with_tools.invoke(messages)
+    return {"messages": [response]}
 
 # Define Graph
 workflow = StateGraph(AgentState)
